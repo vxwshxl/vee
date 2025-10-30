@@ -1,14 +1,14 @@
-// Sample leaderboard data
+// Sample leaderboard data with random names
 const leaderboardData = [
-    { position: 1, name: 'VEESHAL BODOSA', votes: 100000 },
-    { position: 2, name: 'RIPUN BASUMATARY', votes: 80000 },
-    { position: 3, name: 'HIMDIP NARZARY', votes: 70000 },
-    { position: 4, name: 'PLAYER 4', votes: 60000 },
-    { position: 5, name: 'PLAYER 5', votes: 50000 },
-    { position: 6, name: 'PLAYER 6', votes: 40000 },
-    { position: 7, name: 'PLAYER 7', votes: 30000 },
-    { position: 8, name: 'PLAYER 8', votes: 20000 },
-    { position: 9, name: 'PLAYER 9', votes: 10000 },
+    { position: 1, name: 'VEESHAL BODOSA', votes: 2000 },
+    { position: 2, name: 'RIPUN BASUMATARY', votes: 1800 },
+    { position: 3, name: 'HIMDIP NARZARY', votes: 1600 },
+    { position: 4, name: 'ALEX JOHNSON', votes: 1400 },
+    { position: 5, name: 'MARIA GARCIA', votes: 1200 },
+    { position: 6, name: 'JAMES WILSON', votes: 1000 },
+    { position: 7, name: 'SARAH MILLER', votes: 800 },
+    { position: 8, name: 'ROBERT BROWN', votes: 600 },
+    { position: 9, name: 'JENNY DAVIS', votes: 400 },
 ];
 
 // Confetti control variables
