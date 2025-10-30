@@ -1,0 +1,492 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    overflow: hidden;
+    height: 100vh;
+    background-color: #f5f5f5; /* Light grey background */
+}
+
+.leaderboard-container {
+    height: 100vh;
+    background: radial-gradient(circle at center, gold -50%, #fff 50%, gold 500%);
+    background-attachment: fixed;
+    position: relative;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow: hidden;
+    box-shadow: inset 0 0 30px rgba(0, 0, 0, 0.1); /* Softer shadow */
+}
+
+/* Radial sunburst effect - lightened */
+.leaderboard-container::before {
+    content: '';
+    position: fixed;
+    top: -50%;
+    left: -50%;
+    right: -50%;
+    bottom: -50%;
+    background: 
+        repeating-conic-gradient(
+            from 0deg,
+            transparent 0deg 6deg,
+            rgba(255, 255, 255, 0.1) 6deg 12deg
+        );
+    pointer-events: none;
+    z-index: 1;
+    animation: rotateSunburst 15s linear infinite;
+}
+
+@keyframes rotateSunburst {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Title */
+.leaderboard-title {
+    font-size: 48px;
+    font-weight: 900;
+    color: #333333; /* Dark grey for better contrast */
+    text-shadow: 
+        1px 1px 0px #ffffff,
+        2px 2px 0px rgba(0, 0, 0, 0.1);
+    margin-bottom: 80px;
+    letter-spacing: 4px;
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    flex-shrink: 0;
+}
+
+.podium-section {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    gap: 40px;
+    margin-bottom: 50px;
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    max-width: 1000px;
+    flex-shrink: 0;
+}
+
+.podium-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    text-align: center;
+    animation: fadeInUp 0.6s ease forwards;
+    opacity: 0;
+    transition: transform 0.3s ease;
+}
+
+.podium-item:nth-child(1) { animation-delay: 0.2s; }
+.podium-item:nth-child(2) { animation-delay: 0.4s; }
+.podium-item:nth-child(3) { animation-delay: 0.6s; }
+
+.podium-item:hover {
+    transform: translateY(-10px);
+}
+
+/* 2nd Place */
+.second-place {
+    order: 1;
+    margin-bottom: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    width: 280px;
+    height: 280px;
+}
+
+.second-place .avatar-wrapper {
+    width: 120px;
+    height: 120px;
+    margin-bottom: 15px;
+}
+
+.second-place .position-badge {
+    position: absolute;
+    top: -40px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    color: #333333;
+    font-size: 20px;
+    font-weight: 900;
+    padding: 8px 16px;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    z-index: 4;
+    order: 1;
+    border: 2px solid #dee2e6;
+}
+
+/* 1st Place */
+.first-place {
+    order: 2;
+    transform: scale(1.15);
+    margin: 0 20px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.first-place .avatar-wrapper.large {
+    width: 160px;
+    height: 160px;
+    margin-bottom: 20px;
+    margin-top: 40px;
+    z-index: 3;
+}
+
+.first-place .position-badge.first {
+    position: absolute;
+    top: -40px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: linear-gradient(135deg, #FFD700 0%, #FFEA00 100%);
+    color: #000000;
+    font-size: 36px;
+    font-weight: 900;
+    padding: 8px 8px;
+    border-radius: 50%;
+    width: 70px;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 6px 20px rgba(255, 215, 0, 0.5);
+    z-index: 6;
+    order: 1;
+}
+
+.first-place .award-background {
+    position: absolute;
+    width: 230px;
+    height: 230px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+}
+
+.first-place .award-image {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    opacity: 0.7;
+}
+
+.first-place .sparkles {
+    position: absolute;
+    font-size: 30px;
+    animation: sparkle 2s infinite;
+    z-index: 4;
+}
+
+.first-place {
+    animation: pulse 2s infinite;
+    filter: drop-shadow(0 0 15px rgba(255, 215, 0, 0.7));
+    width: 230px;
+    height: auto;
+    min-height: 320px;
+}
+
+.first-place .sparkles:nth-child(5) {
+    top: -40px;
+    left: -40px;
+    animation-delay: 0s;
+}
+
+@keyframes sparkle {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 1; }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+/* 3rd Place */
+.third-place {
+    order: 3;
+    margin-bottom: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    width: 280px;
+    height: 260px;
+}
+
+.third-place .avatar-wrapper {
+    width: 120px;
+    height: 120px;
+    margin-bottom: 15px;
+}
+
+.third-place .position-badge {
+    position: absolute;
+    top: -40px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    color: #333333;
+    font-size: 20px;
+    font-weight: 900;
+    padding: 8px 16px;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    z-index: 4;
+    order: 1;
+    border: 2px solid #dee2e6;
+}
+
+/* Avatar Wrapper */
+.avatar-wrapper {
+    background: #F5E6D3;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    border: 4px solid #FFFFFF;
+    position: relative;
+    z-index: 3;
+}
+
+.avatar {
+    width: 100%;
+    height: 100%;
+}
+
+/* Player Info */
+.player-info {
+    text-align: center;
+    color: #333333; /* Changed from white to dark grey */
+    width: 100%;
+    position: relative;
+    z-index: 3;
+    order: 2;
+}
+
+.player-name {
+    font-size: 20px;
+    font-weight: 900;
+    letter-spacing: 2px;
+    margin-bottom: 0px;
+    text-transform: uppercase;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-top: 10px;
+    max-width: 100%;
+    width: 100%;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.player-votes {
+    font-size: 28px;
+    font-weight: 900;
+    color: #2d508f; /* Changed to blue for better contrast on light background */
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+    margin-top: 5px;
+}
+
+/* Rankings Section */
+.rankings-section {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    width: 100%;
+    max-width: 950px; 
+    position: relative;
+    z-index: 2;
+    flex-shrink: 0;
+    overflow-y: auto;
+    max-height: 35vh; 
+    padding: 0 15px; 
+    scrollbar-width: none; 
+    -ms-overflow-style: none;
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.rankings-section::-webkit-scrollbar {
+    display: none;
+}
+
+.rankings-column {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Ranking Item */
+.ranking-item {
+    display: flex;
+    align-items: center;
+    gap: 15px; 
+    background: rgba(255, 255, 255, 0.8); /* Light background with some transparency */
+    backdrop-filter: blur(10px);
+    padding: 15px 20px; 
+    border-radius: 40px;
+    border: 2px solid rgba(222, 226, 230, 0.8); /* Light border */
+    transition: all 0.3s ease;
+    justify-content: space-between;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+.ranking-item:hover {
+    background: rgba(255, 255, 255, 1);
+    border-color: rgba(192, 192, 192, 0.8);
+    transform: translateX(10px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+}
+
+.ranking-item .rank-position {
+    min-width: 40px;
+    text-align: center;
+}
+
+.rank-position {
+    font-size: 24px;
+    font-weight: 900;
+    color: #2d508f; /* Changed to blue for better contrast */
+    min-width: 50px;
+    text-align: center;
+    letter-spacing: 1px;
+}
+
+.rank-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+.rank-name {
+    font-size: 16px;
+    font-weight: 900;
+    color: #333333; /* Changed from white to dark grey */
+    letter-spacing: 1px;
+    flex-grow: 1;
+    text-transform: uppercase;
+    white-space: nowrap;
+    overflow: visible; 
+    text-overflow: clip;
+    max-width: none; 
+}
+
+.rank-votes {
+    font-size: 20px;
+    font-weight: 900;
+    color: #2d508f; /* Changed to blue for better contrast */
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+    min-width: 80px;
+    text-align: right;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .leaderboard-title {
+        font-size: 36px;
+        margin-bottom: 30px;
+    }
+
+    .podium-section {
+        flex-direction: column;
+        gap: 30px;
+        margin-bottom: 40px;
+    }
+
+    .first-place {
+        transform: scale(1);
+        margin: 0;
+        height: 320px; 
+    }
+
+    .first-place .award-background {
+        width: 200px;
+        height: 200px;
+    }
+
+    .rankings-section {
+        grid-template-columns: 1fr;
+        gap: 12px; 
+        max-width: 95%; 
+    }
+
+    .podium-item .position-badge {
+        width: 50px;
+        height: 50px;
+        font-size: 20px;
+    }
+
+    .first-place .position-badge.first {
+        width: 60px;
+        height: 60px;
+        font-size: 24px;
+    }
+
+    .player-name {
+        font-size: 18px;
+    }
+
+    .player-votes {
+        font-size: 24px;
+    }
+
+    .ranking-item {
+        padding: 12px 15px; 
+        gap: 10px; 
+    }
+
+    .rank-avatar {
+        width: 35px; 
+        height: 35px; 
+    }
+
+    .rank-name {
+        font-size: 14px;
+        overflow: visible;
+        max-width: none; 
+    }
+}
