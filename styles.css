@@ -1,3 +1,57 @@
+/* Arrows */
+.arrow {
+    position: fixed;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 48px;
+    color: #333333;
+    cursor: pointer;
+    z-index: 100;
+    transition: all 0.3s ease;
+    user-select: none;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+}
+
+.left-arrow {
+    left: 20px;
+}
+
+.right-arrow {
+    right: 20px;
+}
+
+.arrow:hover {
+    transform: translateY(-50%) scale(1.1);
+    animation: bounce 0.6s ease infinite alternate;
+}
+
+@keyframes bounce {
+    0% {
+        transform: translateY(-50%) translateX(0) scale(1.1);
+    }
+    100% {
+        transform: translateY(-50%) translateX(10px) scale(1.1);
+    }
+}
+
+.right-arrow:hover {
+    animation: bounce-right 0.6s ease infinite alternate;
+}
+
+@keyframes bounce-right {
+    0% {
+        transform: translateY(-50%) translateX(0) scale(1.1);
+    }
+    100% {
+        transform: translateY(-50%) translateX(-10px) scale(1.1);
+    }
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -54,13 +108,27 @@ body {
 
 /* Title */
 .leaderboard-title {
-    font-size: 48px;
+    font-size: 35px;
     font-weight: 900;
     color: #333333; /* Dark grey for better contrast */
     text-shadow: 
         1px 1px 0px #ffffff,
         2px 2px 0px rgba(0, 0, 0, 0.1);
-    margin-bottom: 80px;
+    letter-spacing: 4px;
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    flex-shrink: 0;
+}
+
+.portfolio {
+    font-size: 48px;
+    font-weight: 900;
+    color: darkred; /* Dark grey for better contrast */
+    text-shadow: 
+        1px 1px 0px #ffffff,
+        2px 2px 0px rgba(0, 0, 0, 0.1);
+    margin-bottom: 50px;
     letter-spacing: 4px;
     position: relative;
     z-index: 2;
@@ -443,6 +511,11 @@ body {
         margin-bottom: 30px;
     }
 
+    .portfolio {
+        font-size: 36px;
+        margin-bottom: 30px;
+    }
+
     .podium-section {
         flex-direction: column;
         gap: 30px;
@@ -500,5 +573,52 @@ body {
         font-size: 14px;
         overflow: visible;
         max-width: none; 
+    }
+}
+
+/* Arrows */
+.arrow {
+    position: fixed;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 48px;
+    color: #333333;
+    cursor: pointer;
+    z-index: 100;
+    transition: all 0.3s ease;
+    user-select: none;
+}
+
+.left-arrow {
+    left: 20px;
+}
+
+.right-arrow {
+    right: 20px;
+}
+
+.arrow:hover {
+    animation: bounce 0.6s ease infinite alternate;
+}
+
+@keyframes bounce {
+    0% {
+        transform: translateY(-50%) translateX(0);
+    }
+    100% {
+        transform: translateY(-50%) translateX(10px);
+    }
+}
+
+.right-arrow:hover {
+    animation: bounce-right 0.6s ease infinite alternate;
+}
+
+@keyframes bounce-right {
+    0% {
+        transform: translateY(-50%) translateX(0);
+    }
+    100% {
+        transform: translateY(-50%) translateX(-10px);
     }
 }
