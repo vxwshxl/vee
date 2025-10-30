@@ -1,173 +1,209 @@
-// Sample leaderboard data for each portfolio
-const portfolioData = {
-    "VICE PRESIDENT": [
-        { position: 1, name: 'VEESHAL BODOSA', votes: 2000 },
-        { position: 2, name: 'RIPUN BASUMATARY', votes: 1800 },
-        { position: 3, name: 'HIMDIP NARZARY', votes: 1600 },
-        { position: 4, name: 'ALEX JOHNSON', votes: 1400 },
-        { position: 5, name: 'MARIA GARCIA', votes: 1200 },
-        { position: 6, name: 'JAMES WILSON', votes: 1000 },
-        { position: 7, name: 'SARAH MILLER', votes: 800 },
-        { position: 8, name: 'ROBERT BROWN', votes: 600 },
-        { position: 9, name: 'JENNY DAVIS', votes: 400 },
-    ],
-    "GENERAL SECRETARY": [
-        { position: 1, name: 'JOHN SMITH', votes: 1900 },
-        { position: 2, name: 'EMMA WATSON', votes: 1750 },
-        { position: 3, name: 'MICHAEL JOHNSON', votes: 1550 },
-        { position: 4, name: 'SOPHIA WILLIAMS', votes: 1350 },
-        { position: 5, name: 'DAVID BROWN', votes: 1150 },
-        { position: 6, name: 'OLIVIA DAVIS', votes: 950 },
-        { position: 7, name: 'JAMES MILLER', votes: 750 },
-        { position: 8, name: 'AVA WILSON', votes: 550 },
-        { position: 9, name: 'WILLIAM TAYLOR', votes: 350 },
-    ],
-    "ASSISTANT GENERAL SECRETARY": [
-        { position: 1, name: 'DANIEL ANDERSON', votes: 1850 },
-        { position: 2, name: 'ISABELLA THOMAS', votes: 1700 },
-        { position: 3, name: 'MATTHEW JACKSON', votes: 1500 },
-        { position: 4, name: 'MIA WHITE', votes: 1300 },
-        { position: 5, name: 'ETHAN HARRIS', votes: 1100 },
-        { position: 6, name: 'CHARLOTTE MARTIN', votes: 900 },
-        { position: 7, name: 'ALEXANDER CLARK', votes: 700 },
-        { position: 8, name: 'AMELIA LEWIS', votes: 500 },
-        { position: 9, name: 'BENJAMIN WALKER', votes: 300 },
-    ],
-    "CULTURAL SECRETARY": [
-        { position: 1, name: 'SOFIA GARCIA', votes: 1800 },
-        { position: 2, name: 'LIAM MARTINEZ', votes: 1650 },
-        { position: 3, name: 'HARPER LOPEZ', votes: 1450 },
-        { position: 4, name: 'LUCAS GONZALEZ', votes: 1250 },
-        { position: 5, name: 'EVELYN HERNANDEZ', votes: 1050 },
-        { position: 6, name: 'JACK TORRES', votes: 850 },
-        { position: 7, name: 'ABIGAIL RAMIREZ', votes: 650 },
-        { position: 8, name: 'OWEN FLORES', votes: 450 },
-        { position: 9, name: 'EMILY RIVERA', votes: 250 },
-    ],
-    "LITERARY SECRETARY": [
-        { position: 1, name: 'LOGAN PHILLIPS', votes: 1750 },
-        { position: 2, name: 'ELIZABETH TURNER', votes: 1600 },
-        { position: 3, name: 'SEBASTIAN PARKER', votes: 1400 },
-        { position: 4, name: 'VICTORIA COLLINS', votes: 1200 },
-        { position: 5, name: 'JULIAN STUART', votes: 1000 },
-        { position: 6, name: 'MADISON BUTLER', votes: 800 },
-        { position: 7, name: 'LEVI SIMMONS', votes: 600 },
-        { position: 8, name: 'ZOE FOSTER', votes: 400 },
-        { position: 9, name: 'ADAM ROGERS', votes: 200 },
-    ],
-    "DEBATE & SYMPOSIUM SECRETARY": [
-        { position: 1, name: 'CHLOE MURPHY', votes: 1700 },
-        { position: 2, name: 'NATHANIEL BELL', votes: 1550 },
-        { position: 3, name: 'PENELOPE COOK', votes: 1350 },
-        { position: 4, name: 'ISAAC REED', votes: 1150 },
-        { position: 5, name: 'AUBREY MORGAN', votes: 950 },
-        { position: 6, name: 'XAVIER PETTERSON', votes: 750 },
-        { position: 7, name: 'QUINN COOPER', votes: 550 },
-        { position: 8, name: 'CLARA RICHARDSON', votes: 350 },
-        { position: 9, name: 'ROMAN COX', votes: 150 },
-    ],
-    "MAJOR GAMES SECRETARY": [
-        { position: 1, name: 'AVERY WARD', votes: 1650 },
-        { position: 2, name: 'ELENA CHAVEZ', votes: 1500 },
-        { position: 3, name: 'JORDAN RUIZ', votes: 1300 },
-        { position: 4, name: 'MADISON ALVAREZ', votes: 1100 },
-        { position: 5, name: 'ADRIAN CASTILLO', votes: 900 },
-        { position: 6, name: 'NATALIE JIMENEZ', votes: 700 },
-        { position: 7, name: 'CARSON SANTOS', votes: 500 },
-        { position: 8, name: 'HAILEY TORRES', votes: 300 },
-        { position: 9, name: 'COLE CASTRO', votes: 100 },
-    ],
-    "MINOR GAMES SECRETARY": [
-        { position: 1, name: 'ELLIE GOMEZ', votes: 1600 },
-        { position: 2, name: 'TRISTAN DIAZ', votes: 1450 },
-        { position: 3, name: 'LILY VASQUEZ', votes: 1250 },
-        { position: 4, name: 'JASON MENDOZA', votes: 1050 },
-        { position: 5, name: 'AALIYAH ORTIZ', votes: 850 },
-        { position: 6, name: 'LINCOLN GUTIERREZ', votes: 650 },
-        { position: 7, name: 'HANNAH CHAMBERS', votes: 450 },
-        { position: 8, name: 'THEODORE FLETCHER', votes: 250 },
-        { position: 9, name: 'ARIA HUNTER', votes: 50 },
-    ],
-    "SOCIAL SERVICE & NSS SECRETARY": [
-        { position: 1, name: 'LUKA MORENO', votes: 1550 },
-        { position: 2, name: 'MELANIE WEBER', votes: 1400 },
-        { position: 3, name: 'IONA CURTIS', votes: 1200 },
-        { position: 4, name: 'FELIX ARNOLD', votes: 1000 },
-        { position: 5, name: 'IVY WAGNER', votes: 800 },
-        { position: 6, name: 'LEO NORRIS', votes: 600 },
-        { position: 7, name: 'DANIELA STEELE', votes: 400 },
-        { position: 8, name: 'SELENE ROWE', votes: 200 },
-        { position: 9, name: 'ORION PETERS', votes: 25 },
-    ],
-    "MUSIC & PERFORMING ARTS SECRETARY": [
-        { position: 1, name: 'CECILIA NORMAN', votes: 1500 },
-        { position: 2, name: 'DAMIAN SIMON', votes: 1350 },
-        { position: 3, name: 'FREYA PEARSON', votes: 1150 },
-        { position: 4, name: 'GABRIEL PALMER', votes: 950 },
-        { position: 5, name: 'HELENA FRANKS', votes: 750 },
-        { position: 6, name: 'ISAAC BRADLEY', votes: 550 },
-        { position: 7, name: 'JULIETTE OSBORNE', votes: 350 },
-        { position: 8, name: 'KAIAN LLOYD', votes: 150 },
-        { position: 9, name: 'LUNA DYER', votes: 10 },
-    ],
-    "GIRLS' WELFARE SECRETARY": [
-        { position: 1, name: 'MAYA FINCH', votes: 1450 },
-        { position: 2, name: 'NOAH HOPKINS', votes: 1300 },
-        { position: 3, name: 'OPHELIA WOOD', votes: 1100 },
-        { position: 4, name: 'PHOENIX BERRY', votes: 900 },
-        { position: 5, name: 'QUINN LITTLE', votes: 700 },
-        { position: 6, name: 'RUBY HALE', votes: 500 },
-        { position: 7, name: 'STELLA GRAHAM', votes: 300 },
-        { position: 8, name: 'THEO WARREN', votes: 100 },
-        { position: 9, name: 'UNA GIBSON', votes: 5 },
-    ],
-    "BOYS' WELFARE SECRETARY": [
-        { position: 1, name: 'VIOLET DUNCAN', votes: 1400 },
-        { position: 2, name: 'WYATT ARMSTRONG', votes: 1250 },
-        { position: 3, name: 'XIMENA ATKINSON', votes: 1050 },
-        { position: 4, name: 'YUSUF PARSONS', votes: 850 },
-        { position: 5, name: 'ZARA DENNIS', votes: 650 },
-        { position: 6, name: 'ADAM CHAPMAN', votes: 450 },
-        { position: 7, name: 'BRIAN SILVA', votes: 250 },
-        { position: 8, name: 'CARA OCONNOR', votes: 50 },
-        { position: 9, name: 'DEREK CHAMBERLAIN', votes: 1 },
-    ],
-    "ACADEMIC AFFAIRS SECRETARY": [
-        { position: 1, name: 'ELLA PATEL', votes: 1350 },
-        { position: 2, name: 'FINN OCONNELL', votes: 1200 },
-        { position: 3, name: 'GRACE HASSAN', votes: 1000 },
-        { position: 4, name: 'HENRY FLEMING', votes: 800 },
-        { position: 5, name: 'IRENE GOODMAN', votes: 600 },
-        { position: 6, name: 'JACKIE MILES', votes: 400 },
-        { position: 7, name: 'KIAN TUCKER', votes: 200 },
-        { position: 8, name: 'LENA RAMOS', votes: 50 },
-        { position: 9, name: 'MILES FIGUEROA', votes: 5 },
-    ]
-};
-
-// List of all portfolios
-const portfolios = [
-    "VICE PRESIDENT",
-    "GENERAL SECRETARY",
-    "ASSISTANT GENERAL SECRETARY",
-    "CULTURAL SECRETARY",
-    "LITERARY SECRETARY",
-    "DEBATE & SYMPOSIUM SECRETARY",
-    "MAJOR GAMES SECRETARY",
-    "MINOR GAMES SECRETARY",
-    "SOCIAL SERVICE & NSS SECRETARY",
-    "MUSIC & PERFORMING ARTS SECRETARY",
-    "GIRLS' WELFARE SECRETARY",
-    "BOYS' WELFARE SECRETARY",
-    "ACADEMIC AFFAIRS SECRETARY"
-];
-
-// Current portfolio index
+// Initialize with empty data structures
+let portfolioData = {};
+let portfolios = [];
 let currentPortfolioIndex = 0;
 
 // Confetti control variables
 let confettiInterval;
 let isConfettiRunning = false;
+
+// Reveal state
+let isRevealed = false;
+
+// Function to fetch data from PHP
+async function fetchData() {
+    try {
+        const response = await fetch('fetch_data.php', {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        });
+        
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        
+        const data = await response.json();
+        
+        // Update global variables with fetched data
+        portfolioData = data.portfolioData;
+        portfolios = data.portfolios;
+        
+        // Initialize the leaderboard with the fetched data
+        initializeLeaderboard();
+    } catch (error) {
+        console.error('Error fetching data:', error);
+        // Fallback to sample data if fetch fails
+        useSampleData();
+        initializeLeaderboard();
+    }
+}
+
+// Sample leaderboard data for each portfolio (fallback)
+function useSampleData() {
+    portfolioData = {
+        "VICE PRESIDENT": [
+            { position: 1, name: 'VEESHAL BODOSA', votes: 2000 },
+            { position: 2, name: 'RIPUN BASUMATARY', votes: 1800 },
+            { position: 3, name: 'HIMDIP NARZARY', votes: 1600 },
+            { position: 4, name: 'ALEX JOHNSON', votes: 1400 },
+            { position: 5, name: 'MARIA GARCIA', votes: 1200 },
+            { position: 6, name: 'JAMES WILSON', votes: 1000 },
+            { position: 7, name: 'SARAH MILLER', votes: 800 },
+            { position: 8, name: 'ROBERT BROWN', votes: 600 },
+            { position: 9, name: 'JENNY DAVIS', votes: 400 },
+        ],
+        "GENERAL SECRETARY": [
+            { position: 1, name: 'JOHN SMITH', votes: 1900 },
+            { position: 2, name: 'EMMA WATSON', votes: 1750 },
+            { position: 3, name: 'MICHAEL JOHNSON', votes: 1550 },
+            { position: 4, name: 'SOPHIA WILLIAMS', votes: 1350 },
+            { position: 5, name: 'DAVID BROWN', votes: 1150 },
+            { position: 6, name: 'OLIVIA DAVIS', votes: 950 },
+            { position: 7, name: 'JAMES MILLER', votes: 750 },
+            { position: 8, name: 'AVA WILSON', votes: 550 },
+            { position: 9, name: 'WILLIAM TAYLOR', votes: 350 },
+        ],
+        "ASSISTANT GENERAL SECRETARY": [
+            { position: 1, name: 'DANIEL ANDERSON', votes: 1850 },
+            { position: 2, name: 'ISABELLA THOMAS', votes: 1700 },
+            { position: 3, name: 'MATTHEW JACKSON', votes: 1500 },
+            { position: 4, name: 'MIA WHITE', votes: 1300 },
+            { position: 5, name: 'ETHAN HARRIS', votes: 1100 },
+            { position: 6, name: 'CHARLOTTE MARTIN', votes: 900 },
+            { position: 7, name: 'ALEXANDER CLARK', votes: 700 },
+            { position: 8, name: 'AMELIA LEWIS', votes: 500 },
+            { position: 9, name: 'BENJAMIN WALKER', votes: 300 },
+        ],
+        "CULTURAL SECRETARY": [
+            { position: 1, name: 'SOFIA GARCIA', votes: 1800 },
+            { position: 2, name: 'LIAM MARTINEZ', votes: 1650 },
+            { position: 3, name: 'HARPER LOPEZ', votes: 1450 },
+            { position: 4, name: 'LUCAS GONZALEZ', votes: 1250 },
+            { position: 5, name: 'EVELYN HERNANDEZ', votes: 1050 },
+            { position: 6, name: 'JACK TORRES', votes: 850 },
+            { position: 7, name: 'ABIGAIL RAMIREZ', votes: 650 },
+            { position: 8, name: 'OWEN FLORES', votes: 450 },
+            { position: 9, name: 'EMILY RIVERA', votes: 250 },
+        ],
+        "LITERARY SECRETARY": [
+            { position: 1, name: 'LOGAN PHILLIPS', votes: 1750 },
+            { position: 2, name: 'ELIZABETH TURNER', votes: 1600 },
+            { position: 3, name: 'SEBASTIAN PARKER', votes: 1400 },
+            { position: 4, name: 'VICTORIA COLLINS', votes: 1200 },
+            { position: 5, name: 'JULIAN STUART', votes: 1000 },
+            { position: 6, name: 'MADISON BUTLER', votes: 800 },
+            { position: 7, name: 'LEVI SIMMONS', votes: 600 },
+            { position: 8, name: 'ZOE FOSTER', votes: 400 },
+            { position: 9, name: 'ADAM ROGERS', votes: 200 },
+        ],
+        "DEBATE & SYMPOSIUM SECRETARY": [
+            { position: 1, name: 'CHLOE MURPHY', votes: 1700 },
+            { position: 2, name: 'NATHANIEL BELL', votes: 1550 },
+            { position: 3, name: 'PENELOPE COOK', votes: 1350 },
+            { position: 4, name: 'ISAAC REED', votes: 1150 },
+            { position: 5, name: 'AUBREY MORGAN', votes: 950 },
+            { position: 6, name: 'XAVIER PETTERSON', votes: 750 },
+            { position: 7, name: 'QUINN COOPER', votes: 550 },
+            { position: 8, name: 'CLARA RICHARDSON', votes: 350 },
+            { position: 9, name: 'ROMAN COX', votes: 150 },
+        ],
+        "MAJOR GAMES SECRETARY": [
+            { position: 1, name: 'AVERY WARD', votes: 1650 },
+            { position: 2, name: 'ELENA CHAVEZ', votes: 1500 },
+            { position: 3, name: 'JORDAN RUIZ', votes: 1300 },
+            { position: 4, name: 'MADISON ALVAREZ', votes: 1100 },
+            { position: 5, name: 'ADRIAN CASTILLO', votes: 900 },
+            { position: 6, name: 'NATALIE JIMENEZ', votes: 700 },
+            { position: 7, name: 'CARSON SANTOS', votes: 500 },
+            { position: 8, name: 'HAILEY TORRES', votes: 300 },
+            { position: 9, name: 'COLE CASTRO', votes: 100 },
+        ],
+        "MINOR GAMES SECRETARY": [
+            { position: 1, name: 'ELLIE GOMEZ', votes: 1600 },
+            { position: 2, name: 'TRISTAN DIAZ', votes: 1450 },
+            { position: 3, name: 'LILY VASQUEZ', votes: 1250 },
+            { position: 4, name: 'JASON MENDOZA', votes: 1050 },
+            { position: 5, name: 'AALIYAH ORTIZ', votes: 850 },
+            { position: 6, name: 'LINCOLN GUTIERREZ', votes: 650 },
+            { position: 7, name: 'HANNAH CHAMBERS', votes: 450 },
+            { position: 8, name: 'THEODORE FLETCHER', votes: 250 },
+            { position: 9, name: 'ARIA HUNTER', votes: 50 },
+        ],
+        "SOCIAL SERVICE & NSS SECRETARY": [
+            { position: 1, name: 'LUKA MORENO', votes: 1550 },
+            { position: 2, name: 'MELANIE WEBER', votes: 1400 },
+            { position: 3, name: 'IONA CURTIS', votes: 1200 },
+            { position: 4, name: 'FELIX ARNOLD', votes: 1000 },
+            { position: 5, name: 'IVY WAGNER', votes: 800 },
+            { position: 6, name: 'LEO NORRIS', votes: 600 },
+            { position: 7, name: 'DANIELA STEELE', votes: 400 },
+            { position: 8, name: 'SELENE ROWE', votes: 200 },
+            { position: 9, name: 'ORION PETERS', votes: 25 },
+        ],
+        "MUSIC & PERFORMING ARTS SECRETARY": [
+            { position: 1, name: 'CECILIA NORMAN', votes: 1500 },
+            { position: 2, name: 'DAMIAN SIMON', votes: 1350 },
+            { position: 3, name: 'FREYA PEARSON', votes: 1150 },
+            { position: 4, name: 'GABRIEL PALMER', votes: 950 },
+            { position: 5, name: 'HELENA FRANKS', votes: 750 },
+            { position: 6, name: 'ISAAC BRADLEY', votes: 550 },
+            { position: 7, name: 'JULIETTE OSBORNE', votes: 350 },
+            { position: 8, name: 'KAIAN LLOYD', votes: 150 },
+            { position: 9, name: 'LUNA DYER', votes: 10 },
+        ],
+        "GIRLS' WELFARE SECRETARY": [
+            { position: 1, name: 'MAYA FINCH', votes: 1450 },
+            { position: 2, name: 'NOAH HOPKINS', votes: 1300 },
+            { position: 3, name: 'OPHELIA WOOD', votes: 1100 },
+            { position: 4, name: 'PHOENIX BERRY', votes: 900 },
+            { position: 5, name: 'QUINN LITTLE', votes: 700 },
+            { position: 6, name: 'RUBY HALE', votes: 500 },
+            { position: 7, name: 'STELLA GRAHAM', votes: 300 },
+            { position: 8, name: 'THEO WARREN', votes: 100 },
+            { position: 9, name: 'UNA GIBSON', votes: 5 },
+        ],
+        "BOYS' WELFARE SECRETARY": [
+            { position: 1, name: 'VIOLET DUNCAN', votes: 1400 },
+            { position: 2, name: 'WYATT ARMSTRONG', votes: 1250 },
+            { position: 3, name: 'XIMENA ATKINSON', votes: 1050 },
+            { position: 4, name: 'YUSUF PARSONS', votes: 850 },
+            { position: 5, name: 'ZARA DENNIS', votes: 650 },
+            { position: 6, name: 'ADAM CHAPMAN', votes: 450 },
+            { position: 7, name: 'BRIAN SILVA', votes: 250 },
+            { position: 8, name: 'CARA OCONNOR', votes: 50 },
+            { position: 9, name: 'DEREK CHAMBERLAIN', votes: 1 },
+        ],
+        "ACADEMIC AFFAIRS SECRETARY": [
+            { position: 1, name: 'ELLA PATEL', votes: 1350 },
+            { position: 2, name: 'FINN OCONNELL', votes: 1200 },
+            { position: 3, name: 'GRACE HASSAN', votes: 1000 },
+            { position: 4, name: 'HENRY FLEMING', votes: 800 },
+            { position: 5, name: 'IRENE GOODMAN', votes: 600 },
+            { position: 6, name: 'JACKIE MILES', votes: 400 },
+            { position: 7, name: 'KIAN TUCKER', votes: 200 },
+            { position: 8, name: 'LENA RAMOS', votes: 50 },
+            { position: 9, name: 'MILES FIGUEROA', votes: 5 },
+        ]
+    };
+    
+    portfolios = [
+        "VICE PRESIDENT",
+        "GENERAL SECRETARY",
+        "ASSISTANT GENERAL SECRETARY",
+        "CULTURAL SECRETARY",
+        "LITERARY SECRETARY",
+        "DEBATE & SYMPOSIUM SECRETARY",
+        "MAJOR GAMES SECRETARY",
+        "MINOR GAMES SECRETARY",
+        "SOCIAL SERVICE & NSS SECRETARY",
+        "MUSIC & PERFORMING ARTS SECRETARY",
+        "GIRLS' WELFARE SECRETARY",
+        "BOYS' WELFARE SECRETARY",
+        "ACADEMIC AFFAIRS SECRETARY"
+    ];
+}
 
 // Function to format votes with commas
 function formatVotes(votes) {
@@ -642,15 +678,38 @@ function revealPodiumPositions() {
 // Function to get current portfolio data
 function getCurrentPortfolioData() {
     const currentPortfolio = portfolios[currentPortfolioIndex];
-    return portfolioData[currentPortfolio];
+    // Return empty array if portfolio data doesn't exist
+    return portfolioData[currentPortfolio] || [];
 }
 
 // Function to update portfolio title
 function updatePortfolioTitle() {
     const titleElement = document.querySelector('.portfolio');
     if (titleElement) {
-        titleElement.textContent = portfolios[currentPortfolioIndex];
+        titleElement.textContent = portfolios[currentPortfolioIndex] || 'PORTFOLIO';
     }
+}
+
+// Function to handle reveal button click
+function handleReveal() {
+    if (isRevealed) return;
+    
+    isRevealed = true;
+    
+    // Update button style
+    const revealButton = document.querySelector('.reveal-button');
+    if (revealButton) {
+        revealButton.textContent = 'REVEALED';
+        revealButton.classList.add('revealed');
+    }
+    
+    // Start continuous confetti
+    startContinuousConfetti();
+    
+    // Start revealing player info from last to first
+    setTimeout(() => {
+        revealPlayerInfo();
+    }, 1000);
 }
 
 // Function to navigate to next portfolio with animation
@@ -671,22 +730,6 @@ function nextPortfolio() {
             setTimeout(() => {
                 container.style.transition = 'transform 0.5s ease';
                 container.style.transform = 'translateX(0)';
-                
-                // Trigger podium animations after a short delay
-                setTimeout(() => {
-                    const podiumItems = document.querySelectorAll('.podium-item');
-                    podiumItems.forEach(item => {
-                        item.style.opacity = '1';
-                    });
-                    
-                    // Start continuous confetti
-                    startContinuousConfetti();
-                    
-                    // Start revealing player info from last to first
-                    setTimeout(() => {
-                        revealPlayerInfo();
-                    }, 1000);
-                }, 100);
             }, 50);
         }, 500);
     }
@@ -710,22 +753,6 @@ function prevPortfolio() {
             setTimeout(() => {
                 container.style.transition = 'transform 0.5s ease';
                 container.style.transform = 'translateX(0)';
-                
-                // Trigger podium animations after a short delay
-                setTimeout(() => {
-                    const podiumItems = document.querySelectorAll('.podium-item');
-                    podiumItems.forEach(item => {
-                        item.style.opacity = '1';
-                    });
-                    
-                    // Start continuous confetti
-                    startContinuousConfetti();
-                    
-                    // Start revealing player info from last to first
-                    setTimeout(() => {
-                        revealPlayerInfo();
-                    }, 1000);
-                }, 100);
             }, 50);
         }, 500);
     }
@@ -733,6 +760,9 @@ function prevPortfolio() {
 
 // Initialize leaderboard with data
 function initializeLeaderboard() {
+    // Reset reveal state
+    isRevealed = false;
+    
     // Initially hide all player info
     document.querySelectorAll('.player-name, .player-votes, .rank-name, .rank-votes').forEach(element => {
         element.textContent = '';
@@ -751,11 +781,22 @@ function initializeLeaderboard() {
     
     // Update portfolio title
     updatePortfolioTitle();
+    
+    // Reset reveal button
+    const revealButton = document.querySelector('.reveal-button');
+    if (revealButton) {
+        revealButton.textContent = 'REVEAL';
+        revealButton.classList.remove('revealed');
+    }
+    
+    // Stop any running confetti
+    stopContinuousConfetti();
 }
 
 // Initialize on page load
 document.addEventListener('DOMContentLoaded', function() {
-    initializeLeaderboard();
+    // Fetch data from server
+    fetchData();
     
     // Trigger podium animations after a short delay
     setTimeout(() => {
@@ -763,14 +804,6 @@ document.addEventListener('DOMContentLoaded', function() {
         podiumItems.forEach(item => {
             item.style.opacity = '1';
         });
-        
-        // Start continuous confetti
-        startContinuousConfetti();
-        
-        // Start revealing player info from last to first
-        setTimeout(() => {
-            revealPlayerInfo();
-        }, 1000);
     }, 50);
     
     // Add animation on scroll
@@ -795,6 +828,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Add event listeners to arrows
     const leftArrow = document.querySelector('.left-arrow');
     const rightArrow = document.querySelector('.right-arrow');
+    const revealButton = document.querySelector('.reveal-button');
     
     if (leftArrow) {
         leftArrow.addEventListener('click', prevPortfolio);
@@ -802,6 +836,10 @@ document.addEventListener('DOMContentLoaded', function() {
     
     if (rightArrow) {
         rightArrow.addEventListener('click', nextPortfolio);
+    }
+    
+    if (revealButton) {
+        revealButton.addEventListener('click', handleReveal);
     }
 });
 
