@@ -108,6 +108,24 @@ function stopContinuousConfetti() {
     }
 }
 
+// Function to animate avatar fade-in
+function animateAvatarFadeIn(element, callback) {
+    // Reset opacity to 0
+    element.style.opacity = '0';
+    
+    // Force reflow
+    element.offsetHeight;
+    
+    // Animate to full opacity
+    element.style.transition = 'opacity 1s ease-in-out';
+    element.style.opacity = '1';
+    
+    // Call callback when transition ends
+    setTimeout(() => {
+        if (callback) callback();
+    }, 1000);
+}
+
 // Function to reveal player info sequentially
 function revealPlayerInfo() {
     // Get all ranking items
@@ -128,6 +146,7 @@ function revealPlayerInfo() {
                 if (data) {
                     const nameElement = element.querySelector('.rank-name');
                     const votesElement = element.querySelector('.rank-votes');
+                    const avatarElement = element.querySelector('.rank-avatar');
                     const positionElement = element.querySelector('.rank-position');
                     
                     // Set name and votes for all positions
@@ -139,13 +158,27 @@ function revealPlayerInfo() {
                         positionElement.classList.add('hidden');
                     }
                     
-                    // Animate vote count and reveal next item when finished
-                    if (votesElement) {
-                        animateVoteCount(votesElement, 0, data.votes, 2000, () => {
-                            revealNext(index + 1);
+                    // Animate avatar fade-in
+                    if (avatarElement) {
+                        animateAvatarFadeIn(avatarElement, () => {
+                            // Animate vote count and reveal next item when finished
+                            if (votesElement) {
+                                animateVoteCount(votesElement, 0, data.votes, 2000, () => {
+                                    revealNext(index + 1);
+                                });
+                            } else {
+                                revealNext(index + 1);
+                            }
                         });
                     } else {
-                        revealNext(index + 1);
+                        // Animate vote count and reveal next item when finished
+                        if (votesElement) {
+                            animateVoteCount(votesElement, 0, data.votes, 2000, () => {
+                                revealNext(index + 1);
+                            });
+                        } else {
+                            revealNext(index + 1);
+                        }
                     }
                 } else {
                     revealNext(index + 1);
@@ -172,65 +205,281 @@ function revealPodiumPositions() {
         if (thirdPlace && data) {
             const nameElement = thirdPlace.querySelector('.player-name');
             const votesElement = thirdPlace.querySelector('.player-votes');
+            const avatarElement = thirdPlace.querySelector('.avatar');
             
             if (nameElement) nameElement.textContent = data.name;
             
-            // Animate vote count and reveal next podium position when finished
-            if (votesElement) {
-                animateVoteCount(votesElement, 0, data.votes, 2000, () => {
-                    // Reveal 2nd place
-                    setTimeout(() => {
-                        const secondPlace = document.querySelector('.second-place');
-                        const data2 = leaderboardData[1]; // 2nd place data
-                        if (secondPlace && data2) {
-                            const nameElement2 = secondPlace.querySelector('.player-name');
-                            const votesElement2 = secondPlace.querySelector('.player-votes');
-                            
-                            if (nameElement2) nameElement2.textContent = data2.name;
-                            
-                            // Animate vote count and reveal next podium position when finished
-                            if (votesElement2) {
-                                animateVoteCount(votesElement2, 0, data2.votes, 2000, () => {
-                                    // Reveal 1st place
-                                    setTimeout(() => {
-                                        const firstPlace = document.querySelector('.first-place');
-                                        const data1 = leaderboardData[0]; // 1st place data
-                                        if (firstPlace && data1) {
-                                            const nameElement1 = firstPlace.querySelector('.player-name');
-                                            const votesElement1 = firstPlace.querySelector('.player-votes');
-                                            
-                                            if (nameElement1) nameElement1.textContent = data1.name;
-                                            
-                                            // Animate vote count for 1st place and stop confetti when finished
-                                            if (votesElement1) {
-                                                animateVoteCount(votesElement1, 0, data1.votes, 2000, () => {
-                                                    // Stop confetti when 1st place animation is complete
-                                                    stopContinuousConfetti();
+            // Animate avatar fade-in
+            if (avatarElement) {
+                animateAvatarFadeIn(avatarElement, () => {
+                    // Animate vote count and reveal next podium position when finished
+                    if (votesElement) {
+                        animateVoteCount(votesElement, 0, data.votes, 2000, () => {
+                            // Reveal 2nd place
+                            setTimeout(() => {
+                                const secondPlace = document.querySelector('.second-place');
+                                const data2 = leaderboardData[1]; // 2nd place data
+                                if (secondPlace && data2) {
+                                    const nameElement2 = secondPlace.querySelector('.player-name');
+                                    const votesElement2 = secondPlace.querySelector('.player-votes');
+                                    const avatarElement2 = secondPlace.querySelector('.avatar');
+                                    
+                                    if (nameElement2) nameElement2.textContent = data2.name;
+                                    
+                                    // Animate avatar fade-in
+                                    if (avatarElement2) {
+                                        animateAvatarFadeIn(avatarElement2, () => {
+                                            // Animate vote count and reveal next podium position when finished
+                                            if (votesElement2) {
+                                                animateVoteCount(votesElement2, 0, data2.votes, 2000, () => {
+                                                    // Reveal 1st place
+                                                    setTimeout(() => {
+                                                        const firstPlace = document.querySelector('.first-place');
+                                                        const data1 = leaderboardData[0]; // 1st place data
+                                                        if (firstPlace && data1) {
+                                                            const nameElement1 = firstPlace.querySelector('.player-name');
+                                                            const votesElement1 = firstPlace.querySelector('.player-votes');
+                                                            const avatarElement1 = firstPlace.querySelector('.avatar');
+                                                            
+                                                            if (nameElement1) nameElement1.textContent = data1.name;
+                                                            
+                                                            // Animate avatar fade-in
+                                                            if (avatarElement1) {
+                                                                animateAvatarFadeIn(avatarElement1, () => {
+                                                                    // Animate vote count for 1st place and stop confetti when finished
+                                                                    if (votesElement1) {
+                                                                        animateVoteCount(votesElement1, 0, data1.votes, 2000, () => {
+                                                                            // Stop confetti when 1st place animation is complete
+                                                                            stopContinuousConfetti();
+                                                                        });
+                                                                    } else {
+                                                                        // Stop confetti if there's no vote animation
+                                                                        stopContinuousConfetti();
+                                                                    }
+                                                                });
+                                                            } else {
+                                                                // Animate vote count for 1st place and stop confetti when finished
+                                                                if (votesElement1) {
+                                                                    animateVoteCount(votesElement1, 0, data1.votes, 2000, () => {
+                                                                        // Stop confetti when 1st place animation is complete
+                                                                        stopContinuousConfetti();
+                                                                    });
+                                                                } else {
+                                                                    // Stop confetti if there's no vote animation
+                                                                    stopContinuousConfetti();
+                                                                }
+                                                            }
+                                                        } else {
+                                                            // Stop confetti if 1st place element not found
+                                                            stopContinuousConfetti();
+                                                        }
+                                                    }, 500); // Small delay before revealing 1st place
                                                 });
                                             } else {
-                                                // Stop confetti if there's no vote animation
-                                                stopContinuousConfetti();
+                                                // If no vote animation for 2nd place, check if we should stop confetti
+                                                setTimeout(() => {
+                                                    stopContinuousConfetti();
+                                                }, 2500); // Wait for potential 1st place animation
                                             }
+                                        });
+                                    } else {
+                                        // Animate vote count and reveal next podium position when finished
+                                        if (votesElement2) {
+                                            animateVoteCount(votesElement2, 0, data2.votes, 2000, () => {
+                                                // Reveal 1st place
+                                                setTimeout(() => {
+                                                    const firstPlace = document.querySelector('.first-place');
+                                                    const data1 = leaderboardData[0]; // 1st place data
+                                                    if (firstPlace && data1) {
+                                                        const nameElement1 = firstPlace.querySelector('.player-name');
+                                                        const votesElement1 = firstPlace.querySelector('.player-votes');
+                                                        const avatarElement1 = firstPlace.querySelector('.avatar');
+                                                        
+                                                        if (nameElement1) nameElement1.textContent = data1.name;
+                                                        
+                                                        // Animate avatar fade-in
+                                                        if (avatarElement1) {
+                                                            animateAvatarFadeIn(avatarElement1, () => {
+                                                                // Animate vote count for 1st place and stop confetti when finished
+                                                                if (votesElement1) {
+                                                                    animateVoteCount(votesElement1, 0, data1.votes, 2000, () => {
+                                                                        // Stop confetti when 1st place animation is complete
+                                                                        stopContinuousConfetti();
+                                                                    });
+                                                                } else {
+                                                                    // Stop confetti if there's no vote animation
+                                                                    stopContinuousConfetti();
+                                                                }
+                                                            });
+                                                        } else {
+                                                            // Animate vote count for 1st place and stop confetti when finished
+                                                            if (votesElement1) {
+                                                                animateVoteCount(votesElement1, 0, data1.votes, 2000, () => {
+                                                                    // Stop confetti when 1st place animation is complete
+                                                                    stopContinuousConfetti();
+                                                                });
+                                                            } else {
+                                                                // Stop confetti if there's no vote animation
+                                                                stopContinuousConfetti();
+                                                            }
+                                                        }
+                                                    } else {
+                                                        // Stop confetti if 1st place element not found
+                                                        stopContinuousConfetti();
+                                                    }
+                                                }, 500); // Small delay before revealing 1st place
+                                            });
                                         } else {
-                                            // Stop confetti if 1st place element not found
-                                            stopContinuousConfetti();
+                                            // If no vote animation for 2nd place, check if we should stop confetti
+                                            setTimeout(() => {
+                                                stopContinuousConfetti();
+                                            }, 2500); // Wait for potential 1st place animation
                                         }
-                                    }, 500); // Small delay before revealing 1st place
-                                });
-                            } else {
-                                // If no vote animation for 2nd place, check if we should stop confetti
-                                setTimeout(() => {
-                                    stopContinuousConfetti();
-                                }, 2500); // Wait for potential 1st place animation
-                            }
-                        }
-                    }, 500); // Small delay before revealing 2nd place
+                                    }
+                                }
+                            }, 500); // Small delay before revealing 2nd place
+                        });
+                    } else {
+                        // If no vote animation for 3rd place, check if we should stop confetti
+                        setTimeout(() => {
+                            stopContinuousConfetti();
+                        }, 5000); // Wait for potential 2nd and 1st place animations
+                    }
                 });
             } else {
-                // If no vote animation for 3rd place, check if we should stop confetti
-                setTimeout(() => {
-                    stopContinuousConfetti();
-                }, 5000); // Wait for potential 2nd and 1st place animations
+                // Animate vote count and reveal next podium position when finished
+                if (votesElement) {
+                    animateVoteCount(votesElement, 0, data.votes, 2000, () => {
+                        // Reveal 2nd place
+                        setTimeout(() => {
+                            const secondPlace = document.querySelector('.second-place');
+                            const data2 = leaderboardData[1]; // 2nd place data
+                            if (secondPlace && data2) {
+                                const nameElement2 = secondPlace.querySelector('.player-name');
+                                const votesElement2 = secondPlace.querySelector('.player-votes');
+                                const avatarElement2 = secondPlace.querySelector('.avatar');
+                                
+                                if (nameElement2) nameElement2.textContent = data2.name;
+                                
+                                // Animate avatar fade-in
+                                if (avatarElement2) {
+                                    animateAvatarFadeIn(avatarElement2, () => {
+                                        // Animate vote count and reveal next podium position when finished
+                                        if (votesElement2) {
+                                            animateVoteCount(votesElement2, 0, data2.votes, 2000, () => {
+                                                // Reveal 1st place
+                                                setTimeout(() => {
+                                                    const firstPlace = document.querySelector('.first-place');
+                                                    const data1 = leaderboardData[0]; // 1st place data
+                                                    if (firstPlace && data1) {
+                                                        const nameElement1 = firstPlace.querySelector('.player-name');
+                                                        const votesElement1 = firstPlace.querySelector('.player-votes');
+                                                        const avatarElement1 = firstPlace.querySelector('.avatar');
+                                                        
+                                                        if (nameElement1) nameElement1.textContent = data1.name;
+                                                        
+                                                        // Animate avatar fade-in
+                                                        if (avatarElement1) {
+                                                            animateAvatarFadeIn(avatarElement1, () => {
+                                                                // Animate vote count for 1st place and stop confetti when finished
+                                                                if (votesElement1) {
+                                                                    animateVoteCount(votesElement1, 0, data1.votes, 2000, () => {
+                                                                        // Stop confetti when 1st place animation is complete
+                                                                        stopContinuousConfetti();
+                                                                    });
+                                                                } else {
+                                                                    // Stop confetti if there's no vote animation
+                                                                    stopContinuousConfetti();
+                                                                }
+                                                            });
+                                                        } else {
+                                                            // Animate vote count for 1st place and stop confetti when finished
+                                                            if (votesElement1) {
+                                                                animateVoteCount(votesElement1, 0, data1.votes, 2000, () => {
+                                                                    // Stop confetti when 1st place animation is complete
+                                                                    stopContinuousConfetti();
+                                                                });
+                                                            } else {
+                                                                // Stop confetti if there's no vote animation
+                                                                stopContinuousConfetti();
+                                                            }
+                                                        }
+                                                    } else {
+                                                        // Stop confetti if 1st place element not found
+                                                        stopContinuousConfetti();
+                                                    }
+                                                }, 500); // Small delay before revealing 1st place
+                                            });
+                                        } else {
+                                            // If no vote animation for 2nd place, check if we should stop confetti
+                                            setTimeout(() => {
+                                                stopContinuousConfetti();
+                                            }, 2500); // Wait for potential 1st place animation
+                                        }
+                                    });
+                                } else {
+                                    // Animate vote count and reveal next podium position when finished
+                                    if (votesElement2) {
+                                        animateVoteCount(votesElement2, 0, data2.votes, 2000, () => {
+                                            // Reveal 1st place
+                                            setTimeout(() => {
+                                                const firstPlace = document.querySelector('.first-place');
+                                                const data1 = leaderboardData[0]; // 1st place data
+                                                if (firstPlace && data1) {
+                                                    const nameElement1 = firstPlace.querySelector('.player-name');
+                                                    const votesElement1 = firstPlace.querySelector('.player-votes');
+                                                    const avatarElement1 = firstPlace.querySelector('.avatar');
+                                                    
+                                                    if (nameElement1) nameElement1.textContent = data1.name;
+                                                    
+                                                    // Animate avatar fade-in
+                                                    if (avatarElement1) {
+                                                        animateAvatarFadeIn(avatarElement1, () => {
+                                                            // Animate vote count for 1st place and stop confetti when finished
+                                                            if (votesElement1) {
+                                                                animateVoteCount(votesElement1, 0, data1.votes, 2000, () => {
+                                                                    // Stop confetti when 1st place animation is complete
+                                                                    stopContinuousConfetti();
+                                                                });
+                                                            } else {
+                                                                // Stop confetti if there's no vote animation
+                                                                stopContinuousConfetti();
+                                                            }
+                                                        });
+                                                    } else {
+                                                        // Animate vote count for 1st place and stop confetti when finished
+                                                        if (votesElement1) {
+                                                            animateVoteCount(votesElement1, 0, data1.votes, 2000, () => {
+                                                                // Stop confetti when 1st place animation is complete
+                                                                stopContinuousConfetti();
+                                                            });
+                                                        } else {
+                                                            // Stop confetti if there's no vote animation
+                                                            stopContinuousConfetti();
+                                                        }
+                                                    }
+                                                } else {
+                                                    // Stop confetti if 1st place element not found
+                                                    stopContinuousConfetti();
+                                                }
+                                            }, 500); // Small delay before revealing 1st place
+                                        });
+                                    } else {
+                                        // If no vote animation for 2nd place, check if we should stop confetti
+                                        setTimeout(() => {
+                                            stopContinuousConfetti();
+                                        }, 2500); // Wait for potential 1st place animation
+                                    }
+                                }
+                            }
+                        }, 500); // Small delay before revealing 2nd place
+                    });
+                } else {
+                    // If no vote animation for 3rd place, check if we should stop confetti
+                    setTimeout(() => {
+                        stopContinuousConfetti();
+                    }, 5000); // Wait for potential 2nd and 1st place animations
+                }
             }
         }
     }, 500); // Small delay before revealing 3rd place
@@ -241,6 +490,11 @@ function initializeLeaderboard() {
     // Initially hide all player info
     document.querySelectorAll('.player-name, .player-votes, .rank-name, .rank-votes').forEach(element => {
         element.textContent = '';
+    });
+    
+    // Hide all avatars initially
+    document.querySelectorAll('.avatar, .rank-avatar').forEach(element => {
+        element.style.opacity = '0';
     });
     
     // Hide all position texts initially
