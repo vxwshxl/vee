@@ -130,8 +130,14 @@ function revealPlayerInfo() {
                     const votesElement = element.querySelector('.rank-votes');
                     const positionElement = element.querySelector('.rank-position');
                     
+                    // Set name and votes for all positions
                     if (nameElement) nameElement.textContent = data.name;
-                    if (positionElement) positionElement.textContent = data.position + getOrdinalSuffix(data.position);
+                    
+                    // Hide position text for all positions
+                    if (positionElement) {
+                        positionElement.textContent = '';
+                        positionElement.classList.add('hidden');
+                    }
                     
                     // Animate vote count and reveal next item when finished
                     if (votesElement) {
@@ -233,8 +239,14 @@ function revealPodiumPositions() {
 // Initialize leaderboard with data
 function initializeLeaderboard() {
     // Initially hide all player info
-    document.querySelectorAll('.player-name, .player-votes, .rank-name, .rank-votes, .rank-position').forEach(element => {
+    document.querySelectorAll('.player-name, .player-votes, .rank-name, .rank-votes').forEach(element => {
         element.textContent = '';
+    });
+    
+    // Hide all position texts initially
+    document.querySelectorAll('.rank-position').forEach(element => {
+        element.textContent = '';
+        element.classList.add('hidden');
     });
 }
 
